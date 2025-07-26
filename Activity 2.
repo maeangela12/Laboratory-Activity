@@ -1,0 +1,51 @@
+class Program
+{
+    static void Main()
+    {
+
+        {
+
+            string[] eventNames = new string[5];
+            DateTime[] eventDates = new DateTime[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write("Enter event name: ");
+                eventNames[i] = Console.ReadLine();
+
+                DateTime date;
+                while (true)
+                {
+                    Console.Write("Enter event date (MM/DD/YYYY): ");
+                    if (DateTime.TryParse(Console.ReadLine(), out date))
+                    {
+
+                        if (Array.Exists(eventDates, d => d.Date == date.Date))
+                        {
+                            Console.WriteLine("Date already used! Enter a different date.");
+                        }
+                        else
+                        {
+                            eventDates[i] = date;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid format. Please enter the date in MM/DD/YYYY format.");
+                    }
+                }
+            }
+
+
+            Array.Sort(eventDates, eventNames);
+
+
+            Console.WriteLine("\nEvents sorted by date:");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"{eventDates[i]:MM/dd/yyyy} - {eventNames[i]}");
+            }
+        }
+    }
+}
