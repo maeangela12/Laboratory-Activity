@@ -1,0 +1,63 @@
+class Program
+{
+
+    static void Main()
+    {
+
+        Console.WriteLine("Enter names (at least 15, duplicates allowed):");
+        string[] allNames = new string[15];
+        for (int i = 0; i < 15; i++)
+        {
+            Console.Write($"Name {i + 1}: ");
+            allNames[i] = Console.ReadLine().Trim();
+        }
+
+
+        string[] uniqueNames = new string[15];
+        int uniqueCount = 0;
+
+
+        for (int i = 0; i < allNames.Length; i++)
+        {
+            if (!string.IsNullOrWhiteSpace(allNames[i]))
+            {
+                bool exists = false;
+                for (int j = 0; j < uniqueCount; j++)
+                {
+                    if (string.Equals(uniqueNames[j], allNames[i], StringComparison.OrdinalIgnoreCase))
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists)
+                {
+                    uniqueNames[uniqueCount] = allNames[i];
+                    uniqueCount++;
+                }
+            }
+        }
+
+
+        for (int i = 0; i < uniqueCount - 1; i++)
+        {
+            for (int j = 0; j < uniqueCount - 1 - i; j++)
+            {
+                if (string.Compare(uniqueNames[j], uniqueNames[j + 1], StringComparison.OrdinalIgnoreCase) > 0)
+                {
+                   
+                    string temp = uniqueNames[j];
+                    uniqueNames[j] = uniqueNames[j + 1];
+                    uniqueNames[j + 1] = temp;
+                }
+            }
+        }
+
+        
+        Console.WriteLine("\nUnique Sorted Contact List: ");
+        for (int i = 0; i < uniqueCount; i++)
+        {
+            Console.WriteLine(uniqueNames[i]);
+        }
+    }
+}
