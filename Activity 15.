@@ -1,0 +1,26 @@
+class Program
+{
+    static void Main()
+    {
+
+
+        Console.WriteLine("Enter numbers (space-separated, min 10):");
+        int[] nums = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+
+        Console.Write("Enter window size (k): ");
+        int k = int.Parse(Console.ReadLine());
+
+        if (nums.Length < 10 || k > nums.Length)
+        {
+            Console.WriteLine("Invalid input: Need min 10 numbers and k <= list size");
+            return;
+        }
+
+
+        Console.WriteLine("\nSliding Window Sums:");
+        for (int i = 0; i <= nums.Length - k; i++)
+            Console.WriteLine(nums.Skip(i).Take(k).Sum());
+    }
+}
+
