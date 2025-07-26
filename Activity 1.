@@ -1,0 +1,34 @@
+public static class Program
+{
+    public static void Main()
+    {
+        string[] names = new string[10];
+        int[] scores = new int[10];
+
+
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write("Enter name: ");
+            names[i] = Console.ReadLine(); // Read name input
+
+            Console.Write("Enter score: ");
+            while (!int.TryParse(Console.ReadLine(), out scores[i])) // Error handling for non-integer input
+            {
+                Console.WriteLine("Invalid score. Please enter an integer.");
+            }
+        }
+
+
+        Array.Sort(scores, names);
+        Array.Reverse(scores);
+        Array.Reverse(names);
+
+
+        Console.WriteLine("\nTop 3 Students:");
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine($"Rank {i + 1}: {names[i]} - {scores[i]}");
+        }
+    }
+}
+
