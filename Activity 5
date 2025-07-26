@@ -1,0 +1,35 @@
+class Program
+{
+
+    static void Main()
+    {
+
+        
+        int[] arr = new int[10];
+        Console.WriteLine("Enter 10 integers:");
+        for (int i = 0; i < 10; i++)
+        {
+            arr[i] = int.Parse(Console.ReadLine());
+        }
+
+        
+        Console.Write("Enter rotation count (k): ");
+        int k = int.Parse(Console.ReadLine());
+        k %= arr.Length; 
+
+        
+        Console.WriteLine("\nOriginal array:");
+        Console.WriteLine(string.Join(" ", arr));
+
+        
+        int[] rotated = new int[arr.Length];
+        for (int i = 0; i < arr.Length; i++)
+        {
+            rotated[(i + k) % arr.Length] = arr[i];
+        }
+
+        
+        Console.WriteLine($"Rotated right by {k} positions:");
+        Console.WriteLine(string.Join(" ", rotated));
+    }
+}
