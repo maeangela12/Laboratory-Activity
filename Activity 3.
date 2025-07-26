@@ -1,0 +1,61 @@
+internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int[] ageResponses = new int[20];
+            int totalAge = 0, minimumAge = int.MaxValue, maximumAge = int.MinValue;
+            int countUnder18 = 0, count18To35 = 0, count36To60 = 0, countAbove60 = 0;
+
+            Console.WriteLine("Please enter 20 age responses:");
+
+            for (int i = 0; i < 20; i++)
+            {
+                Console.Write($"Enter age for person {i + 1}: ");
+                int age;
+                while (!int.TryParse(Console.ReadLine(), out age) || age < 0)
+                {
+                    Console.Write("Invalid input. Please enter a valid non-negative age: ");
+                }
+
+
+                ageResponses[i] = age;
+                totalAge += age;
+
+
+                if (age < minimumAge) minimumAge = age;
+                if (age > maximumAge) maximumAge = age;
+
+
+                if (age < 18)
+                    countUnder18++;
+                else if (age <= 35)
+                    count18To35++;
+                else if (age <= 60)
+                    count36To60++;
+                else
+                    countAbove60++;
+            }
+
+
+            double averageAge = (double)totalAge / 20;
+
+
+            Console.WriteLine("____________________________");
+            Console.WriteLine("Age Statistics:            |");
+            Console.WriteLine("____________________________|");
+            Console.WriteLine($"Total Age Sum: {totalAge}   |");
+            Console.WriteLine("____________________________|");
+            Console.WriteLine($"Average Age: {averageAge:F2} |");
+            Console.WriteLine($"Minimum Age: {minimumAge}    |");
+            Console.WriteLine($"Maximum Age: {maximumAge}    |");
+            Console.WriteLine("____________________________|");
+            Console.WriteLine($"Count of individuals under 18: {countUnder18} |");
+            Console.WriteLine($"Count of individuals aged 18 to 35: {count18To35} |");
+            Console.WriteLine($"Count of individuals aged 36 to 60: {count36To60} |");
+            Console.WriteLine($"Count of individuals above 60: {countAbove60} |");
+            Console.WriteLine("____________________________|");
+        }
+    }
+}
+
